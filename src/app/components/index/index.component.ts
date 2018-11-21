@@ -10,7 +10,6 @@ import { Coin } from '../../Coin';
   styleUrls: ['./index.component.css']
 })
 export class IndexComponent implements OnInit {
-
   coins: any;
 
   constructor(private http: HttpClient, private service: CoinService) {}
@@ -26,8 +25,10 @@ export class IndexComponent implements OnInit {
   }
 
   deleteCoin(id) {
-    this.service.deleteCoin(id).subscribe(res => {
-      console.log('Deleted');
-    });
+    if (confirm('excluir ?')) {
+      this.service.deleteCoin(id).subscribe(res => {
+        console.log('Deleted');
+      });
+    }
   }
 }
